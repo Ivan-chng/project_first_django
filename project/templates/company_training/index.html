@@ -1,0 +1,21 @@
+<!-- extends表明此页面继承自 base.html 文件 -->
+{% extends "base.html" %}
+{% load staticfiles %}
+
+<!-- 写入 base.html 中定义的 title -->
+{% block title %}
+    {{ title }}
+{% endblock title %}
+
+<!-- 写入 base.html 中定义的 content -->
+{% block content %}
+{{ welcome }}
+<!-- 定义放置文章标题的div容器 -->
+
+
+<div class="container">
+    <div class="row mt-2">
+
+    </div>
+</div>
+{% endblock content %}

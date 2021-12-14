@@ -1,0 +1,44 @@
+<!-- extends表明此页面继承自 base.html 文件 -->
+{% extends "base.html" %}
+{% load staticfiles %}
+
+<!-- 写入 base.html 中定义的 title -->
+{% block title %}
+    增加学员课程
+{% endblock title %}
+
+<!-- 写入 base.html 中定义的 content -->
+{% block content %}
+<div class="col-md-4">{{ topic }}</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form action="." method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <lable for="">课程序列</lable>
+                    <select name="c2b2t" id="c2b2t" class="form-control">
+                        {% for c2b2t in c2b2t_list %}
+                        <option value="{{c2b2t.c2b2t_id}}">{{c2b2t.c2b2t_id}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <lable for="">员工</lable>
+                    <select name="user" id="user" class="form-control">
+                        {% for user in user_list %}
+                        <option value="{{user.id}}">{{user.id}}:{{user.username}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <!-- 提交按钮 -->
+                <button type="submit" class="btn btn-primary">提交</button>
+           </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

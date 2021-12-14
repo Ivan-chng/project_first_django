@@ -1,0 +1,34 @@
+<!-- extends表明此页面继承自 base.html 文件 -->
+{% extends "base.html" %}
+{% load staticfiles %}
+
+<!-- 写入 base.html 中定义的 title -->
+{% block title %}
+    更改学员成绩
+{% endblock title %}
+
+<!-- 写入 base.html 中定义的 content -->
+{% block content %}
+<div class="col-md-4">{{ topic }}</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="col-md-4">课程序列 : {{ edit_u2g2m.c2b2t.c2b2t_id }}</div>
+            <div class="col-md-4">用户 : {{ edit_u2g2m.user.username }}</div>
+            <form action="." method="post">
+                {% csrf_token %}
+                <div class="form-group col-md-4">
+                    <label for="grade">成绩</label>
+                    <input type="number" class="form-control" id="grade" name="grade"
+                           placeholder="0~100" value="{{ edit_u2g2m.grade }}" min="0" max="100">
+                </div>
+                <!-- 提交按钮 -->
+                <button type="submit" class="btn btn-primary">提交</button>
+           </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

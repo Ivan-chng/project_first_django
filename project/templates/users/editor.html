@@ -1,0 +1,57 @@
+{% extends "base.html" %} {% load staticfiles %}
+{% block title %} 用户信息 {% endblock title %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <br>
+            <div class="col-md-4">用户名: {{ user.username }}</div>
+            <div class="col-md-4">姓名: {{ profile.name }}</div>
+            <div class="col-md-4">所属部门: {{ profile.dept.dept_name }}</div>
+            <br>
+            <form method="post" action=".">
+                {% csrf_token %}
+                <!-- gender -->
+                <div class="form-group col-md-4">
+                    <label for="gender">性别</label>
+                    <select class="form-control" id="gender" name="gender" value="{{ profile.gender }}">
+                                <option value="male">男</option>
+                                <option value="female">女</option>
+                            </select>
+<!--                    <input type="text" class="form-control" id="gender" name="gender" placeholder="male、female" value="{{ profile.gender }}">-->
+                </div>
+                <!-- 年龄 -->
+                <div class="form-group col-md-4">
+                    <label for="age">年龄</label>
+                    <input type="number" class="form-control" id="age" name="age"
+                           placeholder="18~60" value="{{ profile.age }}" min="18" max="60">
+                </div>
+                <!-- 学历 -->
+                <div class="form-group col-md-4">
+                    <label for="education">学历</label>
+                            <select class="form-control" id="education" name="education" value="{{ profile.education }}">
+                                <option value="high school">高中</option>
+                                <option value="bachelor">本科</option>
+                                <option value="postgraduate">研究生</option>
+                            </select>
+<!--                    <input type="text" class="form-control" id="education" name="education" placeholder="高中，本科，研究生" value="{{ profile.education }}">-->
+                </div>
+                <!-- phone -->
+                <div class="form-group col-md-4">
+                    <label for="phone">手机</label>
+                    <input type="text" placeholder="请输入您的手机号" class="form-control"
+                           id="phone" name="phone" value="{{ profile.phone }}"
+                           oninput = "value=value.replace(/[^\d]/g,'')" maxlength="11">
+                </div>
+                <!-- bio -->
+                <div class="form-group col-md-4">
+                    <label for="bio">简介</label>
+                    <textarea type="text" class="form-control" id="bio" name="bio" rows="12">{{ profile.bio }}</textarea>
+                </div>
+                <!-- 提交按钮 -->
+                <button type="submit" class="btn btn-primary">提交</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
